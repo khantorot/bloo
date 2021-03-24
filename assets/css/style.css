@@ -555,6 +555,7 @@ section{
     background: transparent;
     z-index: 1;
     position: relative;
+    color: var(--bgrd);
 }
 
 .next_project,
@@ -564,6 +565,7 @@ section{
     font-weight: 900;
     text-transform: uppercase;
     text-decoration: underline;
+    color: inherit;
 }
 
 .next_page_btn a:hover{

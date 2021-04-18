@@ -81,7 +81,7 @@ h2{
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 101%;
     z-index: 8;
     display: flex;
     flex-direction: column;
@@ -90,7 +90,7 @@ h2{
 
 .transition div{
     width: 100%;
-    height: 25%;
+    height: 26%;
     background: var(--text);
     border-top: 1px solid #1d1d1d;
     transition: transform ease-out 0.8s;
@@ -421,6 +421,7 @@ section{
 
 .about_section_text p{
     margin-bottom: 20px;
+    line-height: 25px;
 }
 
 .about_section_text a{
@@ -455,69 +456,36 @@ section{
 
 
 
-/* work */
+/* work_section */
+
 .work_section{
-    padding: 100px 0px;
+    overflow-x: hidden;
 }
 
-
-.glider{
-    cursor: grab;
-    min-height: 500px;
+.work_container {
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: nowrap;
+    max-width: none;
 }
 
-.glider_item{
-    padding: 2.2%;
-}
-
-.glider_item .img_wrap{
-    height: 68vh;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.glider_item img{
-    width: 100%;
-}
-
-.glider_item a{
-    font-size: 18px;
-    display: inline-block;
-    margin-top: 10px;
-    transition: ease-out 0.3s;
-}
-
-.glider_item a span{
-    opacity: 0;
-    pointer-events: none;
-}
-.glider_item a:hover{
-    color: var(--index);
-}
-.glider_item a:hover span{
-    opacity: 1;
-}
-
-.glider_info{
-    position: absolute;
-	top: 0;
-	left: 0;
-    width: 40%;
+.work_item {
+    width: 40vw;
+    will-change: transform;
     height: 100%;
-    transition: opacity ease-out 1s;
-    z-index: 1;
-    padding: 5%;
+    padding: 5vw;
 }
 
-.glider_info h2{
+.work_info h2{
     margin-bottom: 30px;
 }
 
-.glider_info p{
+.work_info p{
     margin-bottom: 15px;
+    line-height: 25px;
 }
 
-.glider_info a{
+.work_info a{
     display: inline-block;
     padding: 20px 30px;
     font-weight: 700;
@@ -527,12 +495,45 @@ section{
     border-radius: 10px;
     transition: ease-out 0.3s;
 }
-.glider_info a:hover{
+.work_info a:hover{
     background: var(--text);
     color: var(--bgrd);
 }
 
 
+
+.work_slide .img_wrap{
+    height: calc(100vh - 230px);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.work_slide .img_wrap img{
+    width: 100%;
+    border-radius: 10px;
+    transition: ease-out 0.3s;
+}
+
+.work_slide .text_wrap{
+    font-weight: 700;
+    font-size: 18px;
+    display: inline-block;
+    margin-top: 10px;
+    transition: ease-out 0.3s;
+}
+
+.work_slide .text_wrap span{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.work_slide a:hover img{
+    transform: scale(1.05);
+}
+
+.work_slide a:hover span{
+    opacity: 1;
+}
 
 
 
@@ -1115,8 +1116,6 @@ footer{
 
 
 
-
-
 .project_section{
     display: flex;
     flex-wrap: wrap;
@@ -1324,54 +1323,13 @@ footer{
         padding: 0;
         margin-top: 50px;
     }
-    
 
 
-    .glider{
-        cursor: grab;
-        min-height: 500px;
+    .work_item {
+        width: 100vw;
+        padding: 50px 5vw;
     }
 
-    .glider::after{
-        content: 'Your project is here';
-        background: var(--text);
-        color: var(--bgrd);
-        font-size: 17vw;
-        font-weight: 900;
-        position: absolute;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        left: 505%;
-        bottom: 15%;
-        height: 80%;
-        width: 90%;
-        padding: 5%;
-        z-index: 10;
-        border-radius: 10px;
-    }
-    .glider_box{
-        display: none;
-    }
-
-    .glider_item{
-        padding: 1%;
-    }
-
-    .glider_item .img_wrap{
-        height: 400px;
-        overflow: hidden;
-    }
-
-    .glider_item img{
-        width: 100%;
-    }
-
-    .glider_info{
-        position: static;
-        opacity: 1!important;
-        width: 100%;
-    }
 
     .next_project,
     .next_page_btn a{

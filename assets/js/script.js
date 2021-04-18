@@ -1,118 +1,5 @@
-function menuToggleActive(page_name) {
-    const menu_items = document.querySelectorAll('.menu a');
-    const menu_item_active = document.querySelector('.menu_item_active');
 
-    if (page_name != 'index' && page_name != 'about' && page_name != 'work' && page_name != 'contact') {
-        menu_item_active.style.opacity = 0;
-    } else {
-        menu_items.forEach(element => {
-            if (element.getAttribute('data-barba-trigger') == page_name) {
-                let element_data = element.getBoundingClientRect();
-                menu_item_active.style.width = element_data.width + 'px';
-                menu_item_active.style.left = element_data.left + 'px';
-                menu_item_active.style.opacity = 1;
-            }
-        });
-    }
-}
-
-window.addEventListener('resize', function () {
-    const page_name = document.querySelector('main').getAttribute('data-barba-namespace');
-    menuToggleActive(page_name)
-})
-
-document.addEventListener('scroll', function (e) {
-    let scrolled = window.pageYOffset || document.documentElement.scrollTop;
-    const page_name = document.querySelector('main').getAttribute('data-barba-namespace');
-    const footer_container = document.querySelector('.footer_container');
-    
-    
-    if (page_name == 'index' || page_name == 'english') {
-        if (scrolled >= document.documentElement.clientHeight * 2) {
-            footer_container.style.zIndex = 1;  
-            document.querySelector('video').style.filter = 'grayscale(1) opacity(0.4)';
-        } else {
-            footer_container.style.zIndex = -4;
-            document.querySelector('video').style.filter = 'grayscale(0) opacity(1)'
-        }
-    } else {
-        if (scrolled >= document.documentElement.clientHeight) {
-            footer_container.style.zIndex = 1;  
-        } else {
-            footer_container.style.zIndex = -4;
-        }
-    }
-})
-
-
-const logo = document.querySelector('.logo');
-const body = document.querySelector('body');
-
-if (localStorage.getItem('mode') == 'true') {
-    body.classList.add('dark_mode');
-}
-
-logo.addEventListener('click', function(){
-    body.classList.toggle('dark_mode');
-    let dark = (body.classList.contains('dark_mode')) ? true : false;
-    localStorage.setItem('mode', dark);
-})
-
-
-
-
-
-
-function homeShow() {
-    const slider = new Glider(document.querySelector('.glider'), {
-        slidesToShow: 1,
-        dragVelocity: 2,
-        draggable: 1,
-        responsive: [
-            {
-              breakpoint: 900,
-              settings: {
-
-                slidesToShow: 2.5,
-              }
-            }
-          ]
-    })
-
-    document.querySelector('.glider').addEventListener('scroll', function (e) {
-        const glider_box = document.querySelector('.glider_box');
-        const glider_info = document.querySelector('.glider_info');
-
-        if (glider_box.classList.contains('visible')) {
-            glider_info.style.opacity = 1;
-            glider_info.style.zIndex = 1;
-        } else if (glider_box.classList.contains('left-1')) {
-            glider_info.style.zIndex = -1;
-            glider_info.style.opacity = 0.3;
-        } else {
-            glider_info.style.opacity = 0;
-            glider_info.style.zIndex = -1;
-        }
-    })
-
-    document.querySelector('video').play();
-
-    let text = document.getElementById('title_element');
-    let word = text.getElementsByTagName('span');
-    let i = 0;
-
-    let text_timer = setInterval(function () {
-        word[i].style.transform = 'translateY(-100%)';
-        i = (i + 1) % word.length;
-        word[i].style.transform = 'translateY(0px)';
-    }, 1000);
-
-    setTimeout(function () {
-        clearInterval(text_timer);
-    }, 5000)
-}
-
-
+let mob = (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ? true : false;
 let categores = ["брендинг", "вебсайт", "приложения", "ecommerce", "искусство"];
 
 let projects = {
@@ -126,12 +13,12 @@ let projects = {
         "link": "https://khantorot.github.io/innovation/"
     },
     1: {
-        "name": "Starpi",
+        "name": "Strapi",
         "category": "вебсайт",
         "info": "Some text about this project, like lorem",
         "date": "03.12.2002",
         "image": "work2.jpg",
-        "images": ["work5.jpg", "work1.jpg", "work2.jpg", "work3.jpg", "work4.jpg" ],
+        "images": ["work5.jpg", "work1.jpg", "work2.jpg", "work3.jpg", "work4.jpg"],
         "link": "https://khantorot.github.io/stapi/"
     },
     2: {
@@ -162,6 +49,136 @@ let projects = {
         "link": "https://khantorot.github.io/room/"
     }
 }
+
+
+function menuToggleActive(page_name) {
+    const menu_items = document.querySelectorAll('.menu a');
+    const menu_item_active = document.querySelector('.menu_item_active');
+
+    if (page_name != 'index' && page_name != 'about' && page_name != 'work' && page_name != 'contact') {
+        menu_item_active.style.opacity = 0;
+    } else {
+        menu_items.forEach(element => {
+            if (element.getAttribute('data-barba-trigger') == page_name) {
+                let element_data = element.getBoundingClientRect();
+                menu_item_active.style.width = element_data.width + 'px';
+                menu_item_active.style.left = element_data.left + 'px';
+                menu_item_active.style.opacity = 1;
+            }
+        });
+    }
+}
+
+window.addEventListener('resize', function () {
+    const page_name = document.querySelector('main').getAttribute('data-barba-namespace');
+    menuToggleActive(page_name)
+})
+
+document.addEventListener('scroll', function (e) {
+    let scrolled = window.pageYOffset || document.documentElement.scrollTop;
+    const page_name = document.querySelector('main').getAttribute('data-barba-namespace');
+    const footer_container = document.querySelector('.footer_container');
+
+
+    if (page_name == 'index' || page_name == 'english') {
+        if (scrolled >= document.documentElement.clientHeight * 2) {
+            footer_container.style.zIndex = 1;
+            document.querySelector('video').style.filter = 'grayscale(1) opacity(0.4)';
+        } else {
+            footer_container.style.zIndex = -4;
+            document.querySelector('video').style.filter = 'grayscale(0) opacity(1)'
+        }
+    } else {
+        if (scrolled >= document.documentElement.clientHeight) {
+            footer_container.style.zIndex = 1;
+        } else {
+            footer_container.style.zIndex = -4;
+        }
+    }
+})
+
+
+const logo = document.querySelector('.logo');
+const body = document.querySelector('body');
+
+if (localStorage.getItem('mode') == 'true') {
+    body.classList.add('dark_mode');
+}
+
+logo.addEventListener('click', function () {
+    body.classList.toggle('dark_mode');
+    let dark = (body.classList.contains('dark_mode')) ? true : false;
+    localStorage.setItem('mode', dark);
+})
+
+
+
+
+
+function homeShow() {
+    let out = '';
+
+    for (key in projects) {
+        out += '<div class="work_item work_slide">';
+        out += '<a href="./project.html" data-barba-trigger="' + projects[key].name + '">';
+        out += '<div class="img_wrap"><img src="./content/images/' + projects[key].image + '" alt="' + projects[key].name + '"></div>';
+        out += '<div class="text_wrap">' + projects[key].name + ' <span>↗</span></div>'
+        out += '</a>';
+        out += '</div>';
+    }
+    document.querySelector('.work_container').innerHTML += out;
+
+
+
+    setTimeout(function () {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const allSections = document.querySelectorAll('.work_item');
+        const container = document.querySelector(".work_container");
+
+        let container_w = 0;
+
+        mob == true ? container_w = 100 : container_w = 40;
+        container.style.width = allSections.length * container_w + 'vw';
+
+        gsap.to(allSections, {
+            xPercent: -100 * (allSections.length - 1),
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".work_container",
+                pin: true,
+                start: "top top",
+                scrub: 1,
+                snap: false,
+                end: () => "+=" + container.offsetWidth
+            }
+        });
+
+    }, 500);
+
+
+
+    document.querySelector('video').play();
+
+    let text = document.getElementById('title_element');
+    let word = text.getElementsByTagName('span');
+    let i = 0;
+
+    let text_timer = setInterval(function () {
+        word[i].style.transform = 'translateY(-100%)';
+        i = (i + 1) % word.length;
+        word[i].style.transform = 'translateY(0px)';
+    }, 1000);
+
+    setTimeout(function () {
+        clearInterval(text_timer);
+    }, 5000);
+}
+
+
+
+
+
 
 
 function projectShow() {
@@ -212,6 +229,11 @@ function projectShow() {
         })
     }, 1000)
 }
+
+
+
+
+
 
 
 
@@ -489,7 +511,7 @@ function aboutShow() {
 
     for (key in team) {
         out_team += '<div class="person">';
-        out_team += '<div class="img_wrap"><img src="./content/images/'+ team[key].img +'" alt="'+ team[key].name +'"></div>';
+        out_team += '<div class="img_wrap"><img src="./content/images/' + team[key].img + '" alt="' + team[key].name + '"></div>';
         out_team += '<h4>' + team[key].name + '</h4>';
         out_team += '<p>' + team[key].role + '</p>';
         out_team += "</div>";
@@ -615,36 +637,46 @@ function englishShow() {
     }
     window.addEventListener('scroll', highlightScroll)
 
-    const slider = new Glider(document.querySelector('.glider'), {
-        slidesToShow: 1,
-        dragVelocity: 2,
-        draggable: 1,
-        responsive: [
-            {
-              breakpoint: 900,
-              settings: {
+    let out = '';
 
-                slidesToShow: 2.5,
-              }
+    for (key in projects) {
+        out += '<div class="work_item work_slide">';
+        out += '<a href="' + projects[key].link + '" target="_blank">';
+        out += '<div class="img_wrap"><img src="./content/images/' + projects[key].image + '" alt="' + projects[key].name + '"></div>';
+        out += '<div class="text_wrap">' + projects[key].name + ' <span>↗</span></div>'
+        out += '</a>';
+        out += '</div>';
+    }
+    document.querySelector('.work_container').innerHTML += out;
+
+
+
+    setTimeout(function () {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const allSections = document.querySelectorAll('.work_item');
+        const container = document.querySelector(".work_container");
+
+        let container_w = 0;
+
+        mob == true ? container_w = 100 : container_w = 40;
+        container.style.width = allSections.length * container_w + 'vw';
+
+        gsap.to(allSections, {
+            xPercent: -100 * (allSections.length - 1),
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".work_container",
+                pin: true,
+                start: "top top",
+                scrub: 1,
+                snap: false,
+                end: () => "+=" + container.offsetWidth
             }
-          ]
-    })
+        });
 
-    document.querySelector('.glider').addEventListener('scroll', function (e) {
-        const glider_box = document.querySelector('.glider_box');
-        const glider_info = document.querySelector('.glider_info');
+    }, 500);
 
-        if (glider_box.classList.contains('visible')) {
-            glider_info.style.opacity = 1;
-            glider_info.style.zIndex = 1;
-        } else if (glider_box.classList.contains('left-1')) {
-            glider_info.style.zIndex = -1;
-            glider_info.style.opacity = 0.3;
-        } else {
-            glider_info.style.opacity = 0;
-            glider_info.style.zIndex = -1;
-        }
-    })
 
     document.querySelector('video').play();
 
@@ -683,12 +715,12 @@ function englishShow() {
 
     for (key in team) {
         out_team += '<div class="person">';
-        out_team += '<div class="img_wrap"><img src="./content/images/'+ team[key].img +'" alt="'+ team[key].name +'"></div>';
+        out_team += '<div class="img_wrap"><img src="./content/images/' + team[key].img + '" alt="' + team[key].name + '"></div>';
         out_team += '<h4>' + team[key].name + '</h4>';
         out_team += '<p>' + team[key].role + '</p>';
         out_team += "</div>";
     }
     document.querySelector('.person_container').innerHTML = out_team;
 
-    
+
 }
